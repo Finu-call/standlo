@@ -7,7 +7,6 @@ service cloud.firestore {
         && exists(/databases/$(database)/documents/users/$(request.auth.uid))
         && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
     }
-    // Public catalogue only. Supplier-private details live in supplierSources.
     match /products/{productId} {
       allow read: if true;
       allow create, update, delete: if isAdmin();
@@ -15,13 +14,22 @@ service cloud.firestore {
     match /supplierSources/{productId} {
       allow read, create, update, delete: if isAdmin();
     }
-    // COD orders: public create; only admins can read or manage.
     match /orders/{orderId} {
       allow create: if request.resource.data.keys().hasAll(["customer","items","total","status","paymentMethod"])
         && request.resource.data.paymentMethod == "Cash on Delivery (COD)"
         && request.resource.data.total is number
         && request.resource.data.total > 0;
       allow read, update, delete: if isAdmin();
+    }
+    // Customer tracking page can read one document by its high-entropy order ID.
+    // It cannot list tracking documents or access customer contact/address details.
+    match /orderTracking/{orderId} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if request.resource.data.keys().hasOnly(["status","fulfilmentStatus","carrier","trackingNumber","updatedAt"])
+        && request.resource.data.status == "New"
+        && request.resource.data.fulfilmentStatus == "Awaiting supplier order";
+      allow update, delete: if isAdmin();
     }
     match /users/{userId} {
       allow read: if signedIn() && request.auth.uid == userId;
