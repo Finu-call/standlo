@@ -3,6 +3,24 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#20202a;--muted:#777783;--line:#eeeef2;--purple:#7254e8;--pale:#f0edff;--red:#b83d37}*{box-sizing:border-box}body{margin:0;background:#fafafd;color:var(--ink);font-family:'DM Sans',sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}.shell{max-width:1080px;margin:auto;padding:0 16px}header{background:white;border-bottom:1px solid var(--line)}.head{height:66px;display:flex;align-items:center;justify-content:space-between}.brand{font:800 27px Manrope;letter-spacing:-1px}.brand i{color:var(--purple);font-style:normal}.btn{padding:11px 15px;border-radius:11px;background:#eeeef2;font-weight:700;color:var(--ink);text-decoration:none}.primary{background:var(--purple);color:white}.login{max-width:430px;margin:7vh auto;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}.login h1,h1{font:800 28px Manrope}.muted{color:var(--muted);font-size:13px;line-height:1.5}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:800;color:#555}.field input,.field textarea,.field select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;background:white}.field textarea{min-height:70px}.wide{width:100%}.hidden{display:none!important}.app{padding:24px 0 60px}.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.stats,.grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.grid2{grid-template-columns:1fr 1fr}.panel,.stat,.order{background:white;border:1px solid var(--line);border-radius:16px;padding:16px}.stat span{font-size:12px;color:var(--muted)}.stat b{display:block;font:800 24px Manrope;margin-top:6px}.tabs{display:flex;gap:8px;overflow:auto;margin:20px 0}.tab{padding:11px 15px;border-radius:10px;background:#eeeef2;font-weight:800;white-space:nowrap}.tab.active{background:#222;color:white}.productrow{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;margin:9px 0;gap:10px}.danger{background:#fff0ef;color:var(--red);padding:9px;border-radius:9px}.sub{background:#faf9ff;border:1px solid #eeeaff;border-radius:12px;padding:13px;margin:12px 0}.pill{background:var(--pale);color:var(--purple);border-radius:20px;padding:5px 9px;font-size:11px;font-weight:800}.order{margin:12px 0}.orderhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.msg{color:var(--red);font-size:13px}@media(max-width:650px){.login{margin:5vh 14px}.stats{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.app{padding-top:16px}}
+
+:root{--ink:#17171d;--muted:#85858e;--line:#e9e9ee;--purple:#a2c943;--pale:#f1f7e5}
+body{background:#f7f8f5;color:var(--ink)}
+header{background:#ffffffed;box-shadow:0 3px 18px #10101008}
+.brand{letter-spacing:-1.5px}.brand i{color:#9fc63f}
+.login,.panel,.stat,.order{border:1px solid #e9eae5;box-shadow:0 8px 28px #17171708;border-radius:18px}
+.login{padding:28px}
+h1{letter-spacing:-1px}
+.btn{border-radius:12px;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.98)}
+.primary{background:#a2c943;color:#17200b}
+.tab{border-radius:25px}.tab.active{background:#171717;color:#fff}
+.field input,.field textarea,.field select{border-color:#e5e5e8;border-radius:12px;padding:13px}
+.field input:focus,.field textarea:focus,.field select:focus{outline:2px solid #d8e9b6;border-color:#a2c943}
+.stat b{letter-spacing:-1px}
+.productrow{background:#fff;border-color:#eee;border-radius:14px}
+.sub{background:#f8faF4;border-color:#e8efd9}
+@media(max-width:650px){.login{padding:22px}.bar h1{font-size:25px}}
 </style></head><body>
 <header><div class="shell head"><div class="brand">standlo<i>.</i> <small style="font:700 11px 'DM Sans';color:#888">ADMIN</small></div><a class="btn" href="index.html">View store ↗</a></div></header>
 <section id="login" class="login"><div style="color:var(--purple);font-size:11px;font-weight:800;letter-spacing:1.5px">STORE MANAGEMENT</div><h1>Welcome back.</h1><p class="muted">Sign in with your authorised Standlo admin account.</p><form id="loginForm"><div class="field"><label>Email</label><input name="email" type="email" required autocomplete="username"></div><div class="field"><label>Password</label><input name="password" type="password" required autocomplete="current-password"></div><button class="btn primary wide">Sign in</button></form><p id="loginMsg" class="msg"></p><p class="muted">Requires role: admin in Firestore users/{UID}.</p></section>
