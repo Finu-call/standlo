@@ -26,9 +26,11 @@ service cloud.firestore {
     match /orderTracking/{orderId} {
       allow get: if true;
       allow list: if false;
-      allow create: if request.resource.data.keys().hasOnly(["status","fulfilmentStatus","carrier","trackingNumber","updatedAt"])
+      allow create: if isAdmin() || (
+        request.resource.data.keys().hasOnly(["status","fulfilmentStatus","carrier","trackingNumber","updatedAt"])
         && request.resource.data.status == "New"
-        && request.resource.data.fulfilmentStatus == "Awaiting supplier order";
+        && request.resource.data.fulfilmentStatus == "Awaiting supplier order"
+      );
       allow update, delete: if isAdmin();
     }
     match /users/{userId} {
